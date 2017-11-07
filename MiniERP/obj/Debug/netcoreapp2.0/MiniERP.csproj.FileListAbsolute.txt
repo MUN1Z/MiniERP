@@ -1,0 +1,11 @@
+E:\Git\MiniERP\MiniERP\bin\Debug\netcoreapp2.0\MiniERP.deps.json
+E:\Git\MiniERP\MiniERP\bin\Debug\netcoreapp2.0\MiniERP.runtimeconfig.json
+E:\Git\MiniERP\MiniERP\bin\Debug\netcoreapp2.0\MiniERP.runtimeconfig.dev.json
+E:\Git\MiniERP\MiniERP\bin\Debug\netcoreapp2.0\MiniERP.dll
+E:\Git\MiniERP\MiniERP\bin\Debug\netcoreapp2.0\MiniERP.pdb
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.csprojResolveAssemblyReference.cache
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.csproj.CoreCompileInputs.cache
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.AssemblyInfoInputs.cache
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.AssemblyInfo.cs
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.dll
+E:\Git\MiniERP\MiniERP\obj\Debug\netcoreapp2.0\MiniERP.pdb
