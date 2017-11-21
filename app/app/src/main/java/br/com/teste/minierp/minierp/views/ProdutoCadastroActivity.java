@@ -47,7 +47,6 @@ public class ProdutoCadastroActivity extends AppCompatActivity {
         produto.setValor(Float.parseFloat(mEdtValor.getText().toString()));
 
         saveProduto(produto);
-        Toast.makeText(this, "Salvar dados", Toast.LENGTH_LONG).show();
     }
 
     public void saveProduto(Produto produto) {
@@ -65,6 +64,7 @@ public class ProdutoCadastroActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
                         Toast.makeText(getBaseContext(), "Produto " + produto.getDescricao() + " cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
                 }

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,11 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onRightSwipe(View view, int position) {
-                                Produto person = (Produto) view.getTag();
+                                Produto produto = (Produto) view.getTag();
+                                deleteProduto(produto.getProdutoId());
                             }
                             @Override
                             public void onLeftSwipe(View view, int position) {
-                                Produto person = (Produto) view.getTag();
+                                Produto produto = (Produto) view.getTag();
+                                deleteProduto(produto.getProdutoId());
                             }
 
                         }));
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         Service service = ServiceGenerator.createService(Service.class);
 
-        final Call<List<Produto>> produtos = service.GetAllProdutos();
+        final Call<List<Produto>> produtos = service.getAllProdutos();
 
         produtos.enqueue(new Callback<List<Produto>>() {
             @Override
@@ -93,6 +96,42 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void deleteProduto(int id) {
+        try {
+
+            Service service = ServiceGenerator.createService(Service.class);
+
+            final Call<Produto> person = service.deleteProduto(id);
+
+            person.enqueue(new Callback<Produto>() {
+                @Override
+                public void onResponse(Call<Produto> call, Response<Produto> response) {
+
+                    Produto produto = response.body();
+
+                    if (response.isSuccessful()) {
+                        Toast.makeText(getBaseContext(), "Produto " + produto.getDescricao() + " deletado com sucesso!", Toast.LENGTH_LONG).show();
+                        getProdutos();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Produto> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Sem conexão com internet!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Log.e("IO","IO"+e);
+            Toast.makeText(this, "Exeption: "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        catch(OutOfMemoryError e1) {
+            e1.printStackTrace();
+            Log.e("Memory exceptions","exceptions"+e1);
+        }
     }
 
     @OnClick(R.id.fab)

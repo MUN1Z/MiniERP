@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.teste.minierp.minierp.R;
 import br.com.teste.minierp.minierp.models.Produto;
 import br.com.teste.minierp.minierp.services.Service;
 import br.com.teste.minierp.minierp.services.ServiceGenerator;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +23,10 @@ import retrofit2.Response;
 public class ProdutoDetalheActivity extends AppCompatActivity {
 
     private int mId = 1;
+
+    @BindView(R.id.tvDescricao)TextView mTvDescricao;
+    @BindView(R.id.tvCodBarras) TextView mTvCodBarras;
+    @BindView(R.id.tvValor) TextView mTvValor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +50,16 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
 
             Service service = ServiceGenerator.createService(Service.class);
 
-            final Call<Produto> person = service.GetProduto(id);
+            final Call<Produto> person = service.getProduto(id);
 
             person.enqueue(new Callback<Produto>() {
                 @Override
                 public void onResponse(Call<Produto> call, Response<Produto> response) {
 
                     Produto produto = response.body();
-                    Toast.makeText(getBaseContext(), "Produto: " + produto.getDescricao(), Toast.LENGTH_LONG).show();
-
+                    mTvDescricao.setText("Descrição: " + produto.getDescricao());
+                    mTvCodBarras.setText("Código de barras: " + produto.getCodBarras());
+                    mTvValor.setText("Valor: " + produto.getValor());
                 }
 
                 @Override

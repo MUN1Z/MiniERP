@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ServiceGenerator {
-    public static final String API_BASE_URL = "https://minierpmuniz.herokuapp.com/api/";
+    public static final String API_BASE_URL = "https://testemuniz.herokuapp.com/api/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
